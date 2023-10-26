@@ -31,5 +31,6 @@ iranylistak_core(N-M, Fs, [F | RestFs], [Dir | RestILs]) :-
     iranylistak_core(N-M, Fs, RestFs, RestILs).
 
 iranylistak(N-M, Fs, ILs) :-
-    iranylistak_core(N-M, Fs, Fs, ILs),
+    iranylistak_core(N-M, Fs, Fs, Dir),
+    (nonmember([], Dir) -> ILs = Dir; ILs = []),
     !.
