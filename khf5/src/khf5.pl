@@ -1,18 +1,18 @@
-% :- type parcMutató ==    int-int.          % egy parcella helyét meghatározó egészszám-pár
-% :- type fák ==           list(parcMutató). % a fák helyeit tartalmazó lista
-% :- type irány    --->    n                 % észak 
+% :- type parcMutatÃ³ ==    int-int.          % egy parcella helyÃ©t meghatÃ¡rozÃ³ egÃ©szszÃ¡m-pÃ¡r
+% :- type fÃ¡k ==           list(parcMutatÃ³). % a fÃ¡k helyeit tartalmazÃ³ lista
+% :- type irÃ¡ny    --->    n                 % Ã©szak 
 %                        ; e                 % kelet 
-%                        ; s                 % dél   
+%                        ; s                 % dÃ©l   
 %                        ; w.                % nyugat
-% :- type iránylista ==    list(irany).      % egy adott fához rendelt sátor
-                                             % lehetséges irányait megadó lista
-% :- type iránylisták ==   list(iránylista). % az összes fa iránylistája
+% :- type irÃ¡nylista ==    list(irany).      % egy adott fÃ¡hoz rendelt sÃ¡tor
+                                             % lehetsÃ©ges irÃ¡nyait megadÃ³ lista
+% :- type irÃ¡nylistÃ¡k ==   list(irÃ¡nylista). % az Ã¶sszes fa irÃ¡nylistÃ¡ja
 
-% :- pred iranylistak(parcMutató::in         % NM
-%                     fák::in,               % Fs
-%                     iránylisták::out)      % ILs
+% :- pred iranylistak(parcMutatÃ³::in         % NM
+%                     fÃ¡k::in,               % Fs
+%                     irÃ¡nylistÃ¡k::out)      % ILs
                                              
-% :- pred sator_szukites(fák::in,            % Fs
+% :- pred sator_szukites(fÃ¡k::in,            % Fs
 %                        int::in,            % I
-%                        iránylisták::in,    % ILs0
-%                        iránylisták::out)   % ILs
+%                        irÃ¡nylistÃ¡k::in,    % ILs0
+%                        irÃ¡nylistÃ¡k::out)   % ILs
