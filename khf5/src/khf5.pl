@@ -24,10 +24,10 @@ get_tent(Fx-Fy, s, Tx-Ty) :- Fx1 is Fx + 1, Tx-Ty = Fx1 - Fy.
 get_tent(Fx-Fy, w, Tx-Ty) :- Fy1 is Fy - 1, Tx-Ty = Fx - Fy1.
 
 get_directions(N-M, Fs, Fx-Fy, Dir) :-
-    (Fy1p is Fy + 1, Fy1p =< M, nonmember(Fx-Fy1p, Fs) -> EDir = [e]; EDir = []),
-    (Fx1n is Fx - 1, Fx1n >= 1, nonmember(Fx1n-Fy, Fs) -> append(EDir, [n], NDir); NDir = EDir),
-    (Fx1p is Fx + 1, Fx1p =< N, nonmember(Fx1p-Fy, Fs) -> append(NDir, [s], SDir); SDir = NDir),
-    (Fy1n is Fy - 1, Fy1n >= 1, nonmember(Fx-Fy1n, Fs) -> append(SDir, [w], WDir); WDir = SDir),
+    (get_tent(Fx-Fy, e, Txe-Tye), Tye =< M, nonmember(Txe-Tye, Fs) -> EDir = [e]; EDir = []),
+    (get_tent(Fx-Fy, n, Txn-Tyn), Txn >= 1, nonmember(Txn-Tyn, Fs) -> append(EDir, [n], NDir); NDir = EDir),
+    (get_tent(Fx-Fy, s, Txs-Tys), Txs =< N, nonmember(Txs-Tys, Fs) -> append(NDir, [s], SDir); SDir = NDir),
+    (get_tent(Fx-Fy, w, Txw-Tyw), Tyw >= 1, nonmember(Txw-Tyw, Fs) -> append(SDir, [w], WDir); WDir = SDir),
     Dir = WDir.
 
 iranylistak_core(_, _, [], []).
@@ -57,8 +57,7 @@ sator_szukites_core([F | RestFs], If, Ixy, [Dir | RestILs0], [NewDir | RestILs])
 sator_szukites(Fs, I, ILs0, ILs) :-
     nth1(I, Fs, If),
     nth1(I, ILs0, Id),
-    length(Id, Len),
-    Len = 1,
+    proper_length(Id, 1),
     [IdH | _] = Id,
     get_tent(If, IdH, Ixy),
     sator_szukites_core(Fs, If, Ixy, ILs0, Dir),
